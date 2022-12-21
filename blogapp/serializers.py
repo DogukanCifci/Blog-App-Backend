@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import BlogCategory
+from .models import BlogCategory,BlogPost,BlogComment
 
 
 class BlogCategorySerializer(serializers.ModelSerializer):
@@ -16,3 +16,35 @@ class BlogCategorySerializer(serializers.ModelSerializer):
         ]
 
    
+class BlogPostSerializer(serializers.ModelSerializer) :
+
+    class Meta :
+        model = BlogPost
+
+        fields = [
+            "id",
+            "title",
+            "content",
+            "image",
+            "created_date",
+            "updated_date",
+            "category",
+            "user",
+        ]
+    
+class BlogCommentSerializer(serializers.ModelSerializer) :
+    
+    class Meta :
+        model = BlogComment
+
+        fields = [
+            "id",
+            "first_name",
+            "last_name",
+            "title",
+            "comment",
+            "created_date",
+            "updated_date",
+            "post",
+            "user",
+        ]
