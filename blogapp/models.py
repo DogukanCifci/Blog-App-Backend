@@ -37,7 +37,7 @@ class BlogPost(FixModels) :
         verbose_name_plural = "Bloglar"
 
 class BlogComment(FixModels) :
-    blog_post = models.ForeignKey(BlogPost, verbose_name="Blog Yazisi",on_delete=models.CASCADE)
+    blog_post = models.ForeignKey(BlogPost, verbose_name="Blog Yazisi",on_delete=models.CASCADE, related_name ="blog_comments")
     first_name =models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     title = models.CharField(max_length=50)
