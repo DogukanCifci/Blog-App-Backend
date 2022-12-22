@@ -30,7 +30,7 @@ class BlogPost(FixModels) :
     viewed = models.IntegerField(verbose_name="Görüntülenme",default=0, editable=False) # editable=False ekleyince database'de artik gözükmez. Bizim kontrolümüzden cikar.
     
     def __str__(self) :
-        return f"{self.user}"
+        return f"{self.title}"
 
     class Meta :
         verbose_name = "Blog"
