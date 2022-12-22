@@ -44,7 +44,7 @@ class BlogComment(FixModels) :
     comment = models.TextField()
     
     def __str__(self):
-        return f"{self.blog_post} | {self.first_name} {self.last_name} - {self.title}"
+        return f"{self.blog_post} | {self.first_name} {self.last_name}"
 
     class Meta :
         verbose_name = "Yorum"

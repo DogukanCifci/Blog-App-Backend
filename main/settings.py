@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     #3rd Party Apps
     'rest_framework',
-    'rest_framework.authtoken',
+    'rest_framework.authtoken', #Daha sonra makemigrations ve migrate yapmayi unutma. Cünkü bu uygulama DB ile calisiyor.
 
     #My apps;
     'blogapp',
