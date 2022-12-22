@@ -7,6 +7,7 @@ router = routers.DefaultRouter()
 router.register('blogcategorymvs', BlogCategoryMVS)
 router.register('blogpostmvs', BlogPostMVS)
 router.register('blogcommentmvs', BlogCommentMVS)
+
 urlpatterns = [
     path('', home),
     path('', include(router.urls))

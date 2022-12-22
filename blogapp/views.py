@@ -7,9 +7,7 @@ from .serializers import BlogCategorySerializer,BlogPostSerializer,BlogCommentSe
 from .models import BlogCategory,BlogPost,BlogComment
 
 def home(request) :
-    Response({
-        "message" : "That works!"
-    })
+    return HttpResponse("<h1>Hello, Welcome to Homepage</h1>")
 
 from rest_framework.viewsets import ModelViewSet
 class BlogCategoryMVS(ModelViewSet) :
