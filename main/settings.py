@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     #3rd Party Apps
     'rest_framework',
+    'rest_framework.authtoken',
 
     #My apps;
     'blogapp',
@@ -134,3 +135,14 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+#Kendi ekledigim kisim :
+
+REST_FRAMEWORK = {
+    # -- Auth Type --
+    'DEFAULT_AUTHENTICATION_CLASSES': ['rest_framework.authentication.TokenAuthentication'],
+    # -- Default Permission --
+    'DEFAULT_PERMISSION_CLASSES': ['rest_framework.permissions.IsAuthenticatedOrReadOnly'],
+    # -- Pagination --
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10
+}
