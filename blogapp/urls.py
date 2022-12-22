@@ -1,12 +1,12 @@
 from django.urls import path,include
-from .views import home, BlogCategoryMVS,BlogPostMVS,BlogCommentMVS
-
-
+from .views import *
 from rest_framework import routers
+
+
 router = routers.DefaultRouter()
-router.register('blogcategorymvs', BlogCategoryMVS)
-router.register('blogpostmvs', BlogPostMVS)
-router.register('blogcommentmvs', BlogCommentMVS)
+router.register('blogcategoryview', BlogCategoryView)
+router.register('blogpostview', BlogPostView)
+router.register('blogcommentview', BlogCommentView)
 
 urlpatterns = [
     path('', home),

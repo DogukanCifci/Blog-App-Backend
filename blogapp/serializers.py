@@ -1,50 +1,48 @@
 from rest_framework import serializers
 from .models import BlogCategory,BlogPost,BlogComment
 
+#------------------------ FixSerializer ----------------------------#
+class FixSerializer(serializers.ModelSerializer) :
+    pass
 
-class BlogCategorySerializer(serializers.ModelSerializer):
+    class Meta :
+        #Normalde bu exclude hepsinde tanimlayacaktim. Ama hepsinde ayni sekilde olacagi icin bu FixSerializer'da bir kere tanimlayip hepsine atadim. Atamayi da her bir serializer () icine kendi olusturdugum FixSerializer classini yazdim.
+        exclude = [
+            'created_date',
+            'updated_date'
+        ]
+#------------------------ Serializers ----------------------------#
+
+class BlogCategorySerializer(FixSerializer):
     
-    class Meta:
+    class Meta(FixSerializer.Meta):
         model = BlogCategory
-        # fields = "__all__"
-        fields = [
+        # fields = "__all__" #-->1. Metod
+
+        #2.Metod
+        """ fields = [ 
             "id",
             "author",
             "name",
-            "created_date",
-            "updated_date",
+        ] """
+
+        #3.METOD --> exclude Hepsini cagir ama exclude icine yazdiklarim haricindeki anlamina gelir
+        """ exclude = [
+            'created_date',
+            'updated_date'
         ]
+    """
 
-   
-class BlogPostSerializer(serializers.ModelSerializer) :
+class BlogPostSerializer(FixSerializer) :
 
-    class Meta :
+    class Meta(FixSerializer.Meta) :
         model = BlogPost
 
-        fields = [
-            "id",
-            "title",
-            "content",
-            "image",
-            "created_date",
-            "updated_date",
-            "category",
-            "user",
-        ]
+  
     
 class BlogCommentSerializer(serializers.ModelSerializer) :
     
-    class Meta :
+    class Meta(FixSerializer.Meta) :
         model = BlogComment
 
-        fields = [
-            "id",
-            "first_name",
-            "last_name",
-            "title",
-            "comment",
-            "created_date",
-            "updated_date",
-            "post",
-            "user",
-        ]
+      

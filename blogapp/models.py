@@ -9,7 +9,7 @@ class FixModels(models.Model) :
 
     class Meta :
         abstract = True ## DB'de bu tabloyu olusturmasin diye bu komutu yazdik.
-
+       
 #-------------------------- Models --------------------------#
 #!!!!! Kendi olusturdugum FixModels zaten models.Model oldugu icin alttaki classlarda bir daha extra olarak models.Model yazmama gerek yok. Knedi olusturdugumuz FixModels'ten onu alir.
 class BlogCategory(FixModels) :
@@ -18,17 +18,23 @@ class BlogCategory(FixModels) :
     def __str__(self):
         return self.name
 
+    class Meta :
+        verbose_name = "Kategori"
+        verbose_name_plural = "Kategoriler"
 
 class BlogPost(FixModels) :
     blog_category = models.ForeignKey(BlogCategory, on_delete=models.CASCADE)
     title = models.CharField(max_length=64)
     description = models.CharField(max_length=64)
     content = models.TextField()
-    viewed = models.IntegerField(default=0)
+    viewed = models.IntegerField(verbose_name="Görüntülenme",default=0, editable=False) # editable=False ekleyince database'de artik gözükmez. Bizim kontrolümüzden cikar.
     
     def __str__(self) :
-        return f"{self.title} | {self.user}"
+        return f"{self.user}"
 
+    class Meta :
+        verbose_name = "Blog"
+        verbose_name_plural = "Bloglar"
 
 class BlogComment(FixModels) :
     blog_post = models.ForeignKey(BlogPost, verbose_name="Blog Yazisi",on_delete=models.CASCADE)
@@ -38,6 +44,9 @@ class BlogComment(FixModels) :
     comment = models.TextField()
     
     def __str__(self):
-        return f"{self.first_name} {self.last_name} - {self.title}"
+        return f"{self.blog_post} | {self.first_name} {self.last_name} - {self.title}"
 
+    class Meta :
+        verbose_name = "Yorum"
+        verbose_name_plural = "Yorumlar"
 
