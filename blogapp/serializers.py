@@ -14,7 +14,7 @@ class FixSerializer(serializers.ModelSerializer) :
             'updated_date'
         ]
 #------------------------ Serializers ----------------------------#
-class BlogCommentSerializer(serializers.ModelSerializer) :
+class BlogCommentSerializer(FixSerializer) :
     blog_post_id = serializers.IntegerField()
     blog_post = serializers.StringRelatedField()
 
